@@ -1,0 +1,40 @@
+<!-- index.handlebars目的:定義 index 頁面的partial templates -->
+<div class="container mt-5">
+
+  {{#each numbers}}
+    {{this}}
+  {{/each}}
+
+  <!-- search bar -->
+  <div class="row" id="search-bar">
+    <div class="col-12">
+      <form action="/search">
+        <div class="input-group mb-3">
+          <input type="text" name="keyword" class="form-control" placeholder="Enter movie name to search..."
+            aria-label="Movie Name..." aria-describedby="search-button" value={{keyword}}>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="search-button">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- movie list -->
+  <div class="row" id="data-panel">
+    {{#each movies}}
+    <div class="col-sm-3">
+      <a href="/movies/{{this.id}}" class="text-secondary">
+        <!--使用兩個大括號，則裡面的內容會被當作「純字串」處理-->
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://movie-list.alphacamp.io/posters/{{this.image}}" alt="Card image cap">
+          <div class="card-body movie-item-body">
+            <h6 class="card-title">{{this.title}}</h6>
+          </div>
+        </div>
+      </a>
+    </div>
+    {{/each}}
+  </div>
+</div>
